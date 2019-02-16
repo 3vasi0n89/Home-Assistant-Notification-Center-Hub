@@ -1,6 +1,6 @@
 # Home Assistant Notification Center
 
-This project will aim to centralize TTS and Notifications between all HA Notify Components.
+This project will aim to centralize TTS and Device Notifications between all HA Notify Components.
 
 Many thanks also to @CCOSTAN @happyleaves @tschmidty @lentron for laying down a lot of the groundwork for this.
 
