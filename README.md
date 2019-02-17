@@ -71,8 +71,7 @@ Enter this config into your **ui-lovelace.yaml** or your **raw config editor**
 1. input_select.notification_media_player_google and alexa **HAVE** to contain the **Friendly Names** of your Media Players.
 2. Script speech_processing has to refer to your **Personal TTS Component**.
 3. Script text_processing has to refer to your **Personal Notification Component**.
-4. Lines that need to be edited in the notification_center_config.yaml to match your config are **69-74 and 81-91**
-5. Lines that need to be edited in the notification_center.yaml to match your config are **439-446** (Hoping to get this added to the config.yaml soon)
+4. Lines that need to be edited in the notification_center.yaml to match your config are **439-446** (Hoping to get this added to the config.yaml soon)
 
 # How To Use
 
