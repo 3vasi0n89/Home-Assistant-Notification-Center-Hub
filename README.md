@@ -10,6 +10,7 @@ More info to come!
 
 Lovelace Row Config
 
+```
 - badges: []
   cards:
     - entities:
@@ -41,3 +42,4 @@ Lovelace Row Config
   icon: 'mdi:speaker'
   path: notifications
   title: Notifications
+```
