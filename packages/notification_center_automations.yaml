@@ -1,0 +1,135 @@
+automation:
+##############################################################################
+###  New Device has connected to the network.  let everyone know.           ##
+##############################################################################
+
+  - alias: Notification New Device Connected
+
+    trigger:
+      - platform: event
+        event_type: device_tracker_new_device
+
+    action:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.janet_alert_mode
+
+      - service: script.janet_speech_engine
+        data:
+          call_greeting: 1
+          call_new_device: 1
+        data_template:
+          person: >-
+            {{ trigger.event.data.name }}
+
+##############################################################################
+##                         Shut Down Notification                           ##
+##############################################################################
+
+  - alias: Notification Shut Down
+
+    trigger:
+      - event: shutdown
+        platform: homeassistant
+      - event_type: homeassistant.restart
+        platform: event
+
+    action:
+      - service: script.speech_engine
+        data:
+          call_bye: 1
+          call_shut_down: 1
+
+##############################################################################
+##                          Start Up Notification                           ##
+##############################################################################
+
+  - alias: Notification Start Up
+
+    trigger:
+      - event: start
+        platform: homeassistant
+
+    action:
+      - service: script.speech_engine
+        data:
+          call_greeting: 1
+          call_introduction: 1
+
+##############################################################################
+##                         New Update Notification                          ##
+##############################################################################
+
+  - alias: Notification Update Available
+
+    trigger:
+      - platform: state
+        entity_id: sensor.up_to_date
+        from: 'true'
+        to: 'false'
+
+    action:
+      - service: script.speech_engine
+        data:
+          call_greeting: 1
+          call_update: 1
+
+##############################################################################
+##                  Presence Detection TTS Media Player Select              ##
+##############################################################################
+
+  - alias: Notification Presence Detection
+
+    trigger:
+      platform: state
+      entity_id:
+        - binary_sensor.living_room_motion
+        - binary_sensor.hallway_motion
+        - binary_sensor.dining_room_motion
+        - binary_sensor.bathroom_motion
+        - binary_sensor.kitchen_motion
+        - binary_sensor.master_bedroom_motion
+        - binary_sensor.attic_motion
+      to: "on"
+      from: "off"
+
+    action:
+      - service: input_select.select_option
+        entity_id: input_select.notification_media_player_alexa
+        data_template:
+          option: >-
+            {% if is_state("binary_sensor.attic_motion", "on") %}
+            Attic Dot
+            {% elif is_state("binary_sensor.hallway_motion", "on") %}
+            Hallway Dot
+            {% elif is_state("binary_sensor.dining_room_motion", "on") %}
+            Back Porch Dot
+            {% elif is_state("binary_sensor.bathroom_motion", "on") %}
+            Bathroom Dot
+            {% elif is_state("binary_sensor.kitchen_motion", "on") %}
+            Kitchen Dot
+            {% elif is_state("binary_sensor.master_bedroom_motion", "on") %}
+            Master Bedroom Dot
+            {% elif is_state("binary_sensor.motion_detector_25", "on") %}
+            Livingroom Dot
+            {% endif %}
+
+      - service: input_select.select_option
+        entity_id: input_select.notification_media_player_google
+        data_template:
+          option: >-
+            {% if is_state("binary_sensor.attic_motion", "on") %}
+            All Cast
+            {% elif is_state("binary_sensor.hallway_motion", "on") %}
+            All Cast
+            {% elif is_state("binary_sensor.dining_room_motion", "on") %}
+            All Cast
+            {% elif is_state("binary_sensor.bathroom_motion", "on") %}
+            All Cast
+            {% elif is_state("binary_sensor.kitchen_motion", "on") %}
+            All Cast
+            {% elif is_state("binary_sensor.master_bedroom_motion", "on") %}
+            Master Bedroom Cast
+            {% elif is_state("binary_sensor.motion_detector_25", "on") %}
+            Living Room Speaker
+            {% endif %}
