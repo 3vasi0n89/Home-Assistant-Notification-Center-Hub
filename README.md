@@ -75,11 +75,11 @@ Enter this config into your **ui-lovelace.yaml** or your **raw config editor**
 
 # How To Use
 
-**Service Call Would Look Like This**
+**Service Call For iOS Notifications Would Look Like This**
 ```
 - service: script.speech_engine
   data:
-    notify: "Joe"
+    notify: "ios_joes_iphone"
     call_printer_finished: 1
     title: "3D Printer Report"
     content_type: "jpeg"
