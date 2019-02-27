@@ -496,17 +496,7 @@ script:
       - condition: state
         entity_id: input_boolean.text_notifications
         state: 'on'
-##### Change the notify entities in the service_template to match your devices or groups#####
-      - service_template: >-
-          {% if notify == 'Joe' %}
-            notify.ios_joes_iphone
-          {% elif notify == 'Savannah' %}
-            notify.ios_savannahs_iphone
-          {% elif notify == 'Parents' %}
-            notify.ios_parents
-          {% else %}
-            notify.ios_family
-          {% endif %}
+      - service_template: "notify.{{ notify }}"
         data_template:
           title: "{{ title }}"
           message: >-
