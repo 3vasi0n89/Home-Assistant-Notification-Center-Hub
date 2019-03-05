@@ -90,20 +90,46 @@ Enter this config into your **ui-lovelace.yaml** or your **raw config editor**
 
 Call values have to be **value: 1** to trigger them:
 ```
-"call_greeting": 1,
-"call_introduction": 1,
-"call_update": 1,
-"call_okay": 1,
-"call_inform": 1,
-"call_bye": 1,
-"call_shut_down": 1,
-"call_new_device": 1,
-"call_location_inquiry": 1
-"call_rain_warning": 1
+call_announcement: 1
+call_start_up: 1
+call_greeting: 1 (person)
+call_mode_enabled: 1 (mode)
+call_mode_disabled: 1 (mode)
+call_guest_mode_on: 1
+call_guest_mode_off: 1
+call_alarm_clock: 1 (person)
+call_welcome_home: 1 (person)
+call_welcome_home2: 1 (person)
+call_work_arrive: 1 (person)
+call_work_left: 1 (person)
+call_okay: 1
+call_location_inquiry: 1 (person) (location)
+call_rain_warning: 1
+call_leaving: 1
+call_inside_weather: 1
+call_outside_weather: 1
+call_dark_outside: 1
+call_dark_inside: 1
+call_lock_check: 1 (person)
+call_door_open: 1 (person)
+call_garage_check: 1
+call_window_check: 1
+call_light_check: 1
+call_responsibilities: 1
+call_printer_finished: 1
+call_hot_inside: 1
+call_doorbell: 1
+call_shut_down: 1
+call_update: 1
+call_inspirational_quote: 1
+call_new_device: 1
+call_bed_time: 1
+call_closing: 1
 ```
 Parameter values are **string values** or **sensor states**
 ```
 “person”: “Michael”
+"mode": "Vacation"
 “CustomMessage”: “This is an extra string.”
 “Event”: “some string”
 “WeatherRain”: {{ sensor.example.state + unit_of_measurement }}
