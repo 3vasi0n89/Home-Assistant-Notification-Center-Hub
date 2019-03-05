@@ -26,9 +26,9 @@ More info to come!
 
 * Change TTS Device Based On Motion Sensor States
 * Send Notifications to multiple notify components using only 1 service call
-* Send iOS Push Notifications
+* Send Push Notifications
 * Send Images
-* Send iOS Sounds
+* Send Sounds
 
 
 # Configuration
