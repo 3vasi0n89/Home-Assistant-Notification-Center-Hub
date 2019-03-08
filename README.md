@@ -12,6 +12,7 @@ I would like for this project to get improved by the community so that we can ma
 
 More info to come!
 
+
 ## Notifications Included
 
 * Start Up
