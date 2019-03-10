@@ -116,11 +116,11 @@ Follow this page [here](https://www.home-assistant.io/components/notify.group/) 
 
 ![service_call2][logo]
 
-[logo]: https://github.com/3vasi0n89/home-assistant-config-files/blob/master/www/images/screenshot1.jpg "Service Call"
+[logo]: https://github.com/3vasi0n89/home-assistant-config-files/blob/master/www/images/screenshot1.jpg "Service Call2"
 
 ![service_call3][logo]
 
-[logo]: https://github.com/3vasi0n89/home-assistant-config-files/blob/master/www/images/screenshot2.jpg "Service Call"
+[logo]: https://github.com/3vasi0n89/home-assistant-config-files/blob/master/www/images/screenshot2.jpg "Service Call3"
 ```
 - service: script.speech_engine
   data:
