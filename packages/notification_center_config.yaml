@@ -4,7 +4,6 @@ input_select:
     icon: mdi:speaker
     options:
 ###### Change these to match the FRIENDLY NAME of Google MEDIA PLAYERS #####
-      - None
       - All Cast
       - Living Room Speaker
       - Living Room Cast
@@ -16,7 +15,6 @@ input_select:
     icon: mdi:speaker
     options:
 ###### Change these to match the FRIENDLY NAME of Alexa MEDIA PLAYERS #####
-      - None
       - Whole House
       - Attic Dot
       - Livingroom Dot
