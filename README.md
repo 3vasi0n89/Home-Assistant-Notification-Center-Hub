@@ -114,13 +114,13 @@ Follow this page [here](https://www.home-assistant.io/components/notify.group/) 
 
 **Service call for an iOS notification with an image attachment would look like this:**
 
-![service_call2][logo]
+![service_call2][logo2]
 
-[logo]: https://github.com/3vasi0n89/home-assistant-config-files/blob/master/www/images/screenshot1.jpg "Service Call2"
+[logo2]: https://github.com/3vasi0n89/home-assistant-config-files/blob/master/www/images/screentshot1.jpg "Service Call2"
 
-![service_call3][logo]
+![service_call3][logo3]
 
-[logo]: https://github.com/3vasi0n89/home-assistant-config-files/blob/master/www/images/screenshot2.jpg "Service Call3"
+[logo3]: https://github.com/3vasi0n89/home-assistant-config-files/blob/master/www/images/screenshot2.jpg "Service Call3"
 ```
 - service: script.speech_engine
   data:
