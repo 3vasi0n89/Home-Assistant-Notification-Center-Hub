@@ -1,9 +1,8 @@
 # Home Assistant Notification Center
-
-## About
 ![Notification Center][logo4]
 
 [logo4]: https://github.com/3vasi0n89/home-assistant-config-files/blob/master/www/images/screenshot3.jpg "Notification Center"
+## About
 
 This project will aim to centralize TTS and Device Notifications between all [Home Assistant Notify Components](https://www.home-assistant.io/components/notify/).
 
