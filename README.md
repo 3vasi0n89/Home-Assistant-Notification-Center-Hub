@@ -90,7 +90,7 @@ Follow this page [here](https://www.home-assistant.io/components/notify.group/) 
 
 ![service_call][logo]
 
-[logo]: https://github.com/3vasi0n89/home-assistant-config-files/blob/master/www/images/screenshot1.jpg "Service Call"
+[logo]: https://github.com/3vasi0n89/home-assistant-config-files/blob/master/www/images/screenshot4.jpg "Service Call"
 
 **Service call for a standard notification would look like this:** (Note. This call will only send a **TTS** notification.)
 ```
@@ -120,7 +120,7 @@ Follow this page [here](https://www.home-assistant.io/components/notify.group/) 
 
 ![service_call3][logo]
 
-[logo]: https://github.com/3vasi0n89/home-assistant-config-files/blob/master/www/images/screenshot1.jpg "Service Call"
+[logo]: https://github.com/3vasi0n89/home-assistant-config-files/blob/master/www/images/screenshot2.jpg "Service Call"
 ```
 - service: script.speech_engine
   data:
