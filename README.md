@@ -88,6 +88,10 @@ Follow this page [here](https://www.home-assistant.io/components/notify.group/) 
 
 # How To Use
 
+![service_call][logo]
+
+[logo]: https://github.com/3vasi0n89/home-assistant-config-files/blob/master/www/images/screenshot1.jpg "Service Call"
+
 **Service call for a standard notification would look like this:** (Note. This call will only send a **TTS** notification.)
 ```
 - service: script.speech_engine
@@ -109,6 +113,14 @@ Follow this page [here](https://www.home-assistant.io/components/notify.group/) 
 ```
 
 **Service call for an iOS notification with an image attachment would look like this:**
+
+![service_call2][logo]
+
+[logo]: https://github.com/3vasi0n89/home-assistant-config-files/blob/master/www/images/screenshot1.jpg "Service Call"
+
+![service_call3][logo]
+
+[logo]: https://github.com/3vasi0n89/home-assistant-config-files/blob/master/www/images/screenshot1.jpg "Service Call"
 ```
 - service: script.speech_engine
   data:
