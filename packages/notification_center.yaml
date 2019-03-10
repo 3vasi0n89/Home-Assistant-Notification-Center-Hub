@@ -58,7 +58,7 @@ input_number:
     icon: mdi:volume-high
     min: 0.0
     max: 1.0
-    step: 0.01
+    step: 0.1
 
 ######################################################################################################
 ##    within speech_engine the string message is generated with the use of macro's.                 ##
