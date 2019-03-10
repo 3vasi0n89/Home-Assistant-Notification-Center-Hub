@@ -118,6 +118,7 @@ Follow this page [here](https://www.home-assistant.io/components/notify.group/) 
 
 [logo2]: https://github.com/3vasi0n89/home-assistant-config-files/blob/master/www/images/screentshot1.jpg "Service Call2"
 
+
 ![service_call3][logo3]
 
 [logo3]: https://github.com/3vasi0n89/home-assistant-config-files/blob/master/www/images/screenshot2.jpg "Service Call3"
