@@ -22,7 +22,7 @@ There are a few things that still need to be tweaked in this project and I am lo
 
 **More updates to come!**
 
-## Notifications Currently Included
+## Notification Automations Currently Included
 
 * Start Up
 * Shut down
