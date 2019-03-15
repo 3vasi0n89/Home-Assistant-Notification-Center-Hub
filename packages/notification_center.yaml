@@ -101,6 +101,7 @@ script:
                 "It's a little past Sunset. Time to turn on the outside lights. ",
                 "I will switch on the outside lights. It is getting dark outside. ",
                 "Time to turn on the front lights. I will take care of it. "
+              ] %}
               {{ dark_outside | random }}
             {%- endmacro -%}
 
@@ -304,17 +305,17 @@ script:
               {{ lock_check | random }}
             {%- endmacro -%}
 
-            {%- macro door_open(person) -%}
-              {% set door_open = [
+            {%- macro door_check(person) -%}
+              {% set door_check = [
                 person~" you left the door open! Turn back around and close it! ",
                 person~" you really left the door open and left the house?! ",
                 "Hey "~person~"! You forgot to close the door!! "
               ] %}
-              {{ door_open | random }}
+              {{ door_check | random }}
             {%- endmacro -%}
 
             {%- macro garage_check() -%}
-              {% if states.binary_sensor.garage_door_sensor.state !='off' -%}
+              {% if states.binary_sensor.garage_door_sensor_71.state !='off' -%}
                 The
                 {% for state in states.binary_sensor if state.state == 'on' -%}
                 {%- endfor %}
@@ -587,6 +588,14 @@ script:
               {{ bed_time | random }}
             {% endmacro %}
 
+            {% macro alarm_triggered() %}
+              {% set alarm_triggered = [
+                "The {{ trigger.to_state.attributes.friendly_name }} has been opened! ",
+                "Intruder Alert! Someone opened the {{ trigger.to_state.attributes.friendly_name }}! "
+              ] %}
+              {{ alarm_triggered | random }}
+            {% endmacro %}
+
             {# ********************************************* #}
             {#  ******** Start the Speech routines ********  #}
             {# ********************************************* #}
@@ -653,14 +662,14 @@ script:
               {% set location = location_inquiry( person, location_not_home() ) %}
               {% set count = location | length %}
               {% if count <= 10 %}
-                {{ unknown() }}where {{ person }} is.
+                {{ unknown() }} where {{ person }} is.
               {% else %}
                 {{ location }}
               {% endif %}
             {% endif %}
 
             {% if call_rain_warning == 1 %}
-              {{ rain_warning() }}
+              {{ rain_warning(bad_weather) }}
             {% endif %}
 
             {% if call_leaving == 1 %}
@@ -691,8 +700,8 @@ script:
               {{ lock_check(person) }}
             {% endif %}
 
-            {% if call_door_open == 1 %}
-              {{ door_open(person) }}
+            {% if call_door_check == 1 %}
+              {{ door_check(person) }}
             {% endif %}
 
             {% if call_garage_check == 1 or is_state('sun.sun', 'below_horizon') %}
