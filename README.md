@@ -38,6 +38,7 @@ There are a few things that still need to be tweaked in this project and I am lo
 * Actionable Notifications (Currently only supported by iOS but Android will be in the near future)
 * Send Images
 * Send Sounds
+* This project also uses the Darksky, ISS, and Moon Phase components in some variables and while it's not required it is advised to set up these components or change the sensors to match your config to get the most out of this project.
 
 ## Bonus Tip
 

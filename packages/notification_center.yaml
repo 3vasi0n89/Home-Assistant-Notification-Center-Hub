@@ -314,7 +314,7 @@ script:
             {%- endmacro -%}
 
             {%- macro garage_check() -%}
-              {% if states.binary_sensor.garage_door_sensor_71.state !='off' -%}
+              {% if states.binary_sensor.garage_door_sensor.state !='off' -%}
                 The
                 {% for state in states.binary_sensor if state.state == 'on' -%}
                 {%- endfor %}
@@ -653,14 +653,14 @@ script:
               {% set location = location_inquiry( person, location_not_home() ) %}
               {% set count = location | length %}
               {% if count <= 10 %}
-                {{ unknown() }}where {{ person }} is. {{ witty( error(), chance ) }}
+                {{ unknown() }}where {{ person }} is.
               {% else %}
                 {{ location }}
               {% endif %}
             {% endif %}
 
             {% if call_rain_warning == 1 %}
-              {{ rain_warning( witty ( bad_weather(), chance ) ) }}
+              {{ rain_warning() }}
             {% endif %}
 
             {% if call_leaving == 1 %}
