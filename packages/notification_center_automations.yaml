@@ -130,8 +130,8 @@ automation:
           notify: "ios_family"
           title: "Attention!"
         data_template:
-          CustomMessage: >
 ######## Change this to match the ENTITY ID of your WINDOW/DOOR SENSORS ######
+          CustomMessage: >
             {% if is_state("binary_sensor.front_door_8", "on") %}
             The Front Door Is Open
             {% elif is_state("binary_sensor.back_door_70", "on") %}
@@ -196,9 +196,9 @@ automation:
     action:
       - service: input_select.select_option
         entity_id: input_select.notification_media_player_alexa
+######## Change this to match the FRIENDLY NAME of your GOOGLE MEDIA PLAYERS and the ENTITY ID of your MOTION DETECTORS ######
         data_template:
           option: >-
-######## Change this to match the FRIENDLY NAME of your GOOGLE MEDIA PLAYERS and the ENTITY ID of your MOTION DETECTORS ######
             {% if is_state("binary_sensor.attic_motion", "on") %}
             Attic Dot
             {% elif is_state("binary_sensor.hallway_motion", "on") %}
@@ -217,9 +217,9 @@ automation:
 
       - service: input_select.select_option
         entity_id: input_select.notification_media_player_google
+######## Change this to match the FRIENDLY NAME of your ALEXA MEDIA PLAYERS and the ENTITY ID of your MOTION DETECTORS ######
         data_template:
           option: >-
-######## Change this to match the FRIENDLY NAME of your ALEXA MEDIA PLAYERS and the ENTITY ID of your MOTION DETECTORS ######
             {% if is_state("binary_sensor.attic_motion", "on") %}
             Attic Cast
             {% elif is_state("binary_sensor.hallway_motion", "on") %}
