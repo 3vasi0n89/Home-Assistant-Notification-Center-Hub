@@ -84,6 +84,10 @@ The packages have been split up so that I should be able to update the notificat
 
 input_select.notification_media_player_google and alexa **Must** contain the **Friendly Names** of your Media Players.
 
+## Notification_Center_Automations.YAML Configuration
+
+Make sure to change the ENTITY ID's and FRIENDLY NAMES in the automations file to match your setup.
+
 ## Set Up Notify Groups
 
 Follow this page [here](https://www.home-assistant.io/components/notify.group/) for instructions on how to set up notify groups in Home Assistant for all of your text notifications.
@@ -103,14 +107,14 @@ Follow this page [here](https://www.home-assistant.io/components/notify.group/) 
     call_inside_weather: 1
 ```
 
-**Additionally if you want to send both a TTS and Text notification then call like this:** (Note. The notify variable is used for text notifications. The value for the variable must match the service part of your notify.entity_id, e.g. mine is notify.ios_joes_iphone so I use ios_joes_iphone)
+**Additionally if you want to send both a TTS and Text notification then call like this:** (Note. The notify variable is used for text notifications. The value for the variable must match the service part of your notify.entity_id, e.g. mine is notify.ios_family so I use ios_family)
 ```
 - service: script.speech_engine
   data:
   call_greeting: 1
   call_welcome_home: 1
   call_inside_weather: 1
-  notify: "ios_joes_iphone"
+  notify: "ios_family"
   person: "Joe"
 ```
 
@@ -127,7 +131,7 @@ Follow this page [here](https://www.home-assistant.io/components/notify.group/) 
 ```
 - service: script.speech_engine
   data:
-    notify: "ios_joes_iphone"
+    notify: "ios_family"
     call_printer_finished: 1
     title: "3D Printer Report"
     content_type: "jpeg"
@@ -148,7 +152,7 @@ Follow this page [here](https://www.home-assistant.io/components/notify.group/) 
       {{ trigger.event.data.name }}
 ```
 
-**Current available calls:** (Note. Call values have to be a value of: **1** to trigger them. The person, mode, and location parameters are just here to show you which calls can use them)
+**Current available calls:** (Note. Call values have to be a value of: **1** to trigger them and will appear in this order when called. The person, mode, and location parameters are just here to show you which calls can use them)
 ```
 call_announcement: 1
 call_start_up: 1
