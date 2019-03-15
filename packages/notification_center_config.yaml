@@ -2,8 +2,8 @@ input_select:
   notification_media_player_google:
     name: Source Google
     icon: mdi:speaker
-    options:
 ###### Change these to match the FRIENDLY NAME of Google MEDIA PLAYERS #####
+    options:
       - All Cast
       - Living Room Speaker
       - Living Room Cast
@@ -13,8 +13,8 @@ input_select:
   notification_media_player_alexa:
     name: Source Alexa
     icon: mdi:speaker
-    options:
 ###### Change these to match the FRIENDLY NAME of Alexa MEDIA PLAYERS #####
+    options:
       - Whole House
       - Attic Dot
       - Livingroom Dot
@@ -31,8 +31,8 @@ sensor:
     sensors:
       low_battery:
         friendly_name: 'Low Battery'
-        entity_id:
 ###### Change these to match the ENTITY ID of the devices whos battery levels you want to track ######
+        entity_id:
           - device_tracker.joes_iphone
           - device_tracker.savannahs_iphone
         value_template: >
