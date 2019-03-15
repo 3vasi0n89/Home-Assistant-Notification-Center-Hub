@@ -16,8 +16,11 @@ automation:
 
       - service: script.speech_engine
         data:
+          notify: "ios_family"
           call_greeting: 1
           call_new_device: 1
+          alexa_type: "announce"
+          alexa_method: "all"
         data_template:
           person: >-
             {{ trigger.event.data.name }}
@@ -37,8 +40,10 @@ automation:
     action:
       - service: script.speech_engine
         data:
+          notify: "ios_family"
           call_bye: 1
           call_shut_down: 1
+          alexa_type: "tts"
 
 ##############################################################################
 ##                          Start Up Notification                           ##
@@ -53,8 +58,10 @@ automation:
     action:
       - service: script.speech_engine
         data:
+          notify: "ios_family"
           call_greeting: 1
           call_introduction: 1
+          alexa_type: "tts"
 
 ##############################################################################
 ##                         New Update Notification                          ##
@@ -71,18 +78,111 @@ automation:
     action:
       - service: script.speech_engine
         data:
+          notify: "ios_family"
           call_greeting: 1
           call_update: 1
+          alexa_type: "tts"
 
 ##############################################################################
-##                  Presence Detection TTS Media Player Select              ##
+##                             Repeat Last Message                          ##
+##############################################################################
+
+  - id: notification_repeat_last_message
+    alias: Notification Repeat Last Message
+    trigger:
+      - platform: state
+        entity_id: input_boolean.last_message
+        to: 'on'
+
+    action:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.notification_alert_mode
+      - service: script.speech_engine
+        data:
+          notify: "ios_family"
+          title: "Repeating The Last Message"
+          alexa_type: "tts"
+        data_template:
+          CustomMessage: "{{ states('sensor.last_message') }}"
+
+      - service: input_boolean.turn_off
+        entity_id:
+          - input_boolean.last_message
+
+##############################################################################
+##                             Repeat Last Message                          ##
+##############################################################################
+
+  - id: notification_left_something_open
+    alias: Notification Left Something Open
+    trigger:
+      - platform: state
+        entity_id:
+######## Change this to match the ENTITY ID of your TRACKED DEVICE/S ######
+          - device_tracker.joes_iphone
+        to: 'away'
+        from: 'home'
+
+    action:
+      - service: script.speech_engine
+        data:
+          notify: "ios_family"
+          title: "Attention!"
+        data_template:
+          CustomMessage: >
+######## Change this to match the ENTITY ID of your WINDOW/DOOR SENSORS ######
+            {% if is_state("binary_sensor.front_door_8", "on") %}
+            The Front Door Is Open
+            {% elif is_state("binary_sensor.back_door_70", "on") %}
+            The Back Door Is Open
+            {% elif is_state("binary_sensor.side_door_45", "on") %}
+            The Side Door Is Open
+            {% elif is_state("binary_sensor.living_room_window_1_46", "on") %}
+            The Living Room Window 1 Is Open
+            {% elif is_state("binary_sensor.living_room_window_2_5", "on") %}
+            The Living Room Window 2 Is Open
+            {% elif is_state("binary_sensor.living_room_window_3_44", "on") %}
+            The Living Room Window 3 Is Open
+            {% elif is_state("binary_sensor.living_room_window_4_7", "on") %}
+            The Living Room Window 4 Is Open
+            {% endif %}
+
+##############################################################################
+##                              Battery Alert                               ##
+##############################################################################
+
+  - alias: 'Notification Battery Alert'
+    id: notification_battery_alert
+    initial_state: 'on'
+    trigger:
+      - platform: time
+        at: '22:00:00'
+    condition:
+      condition: template
+      value_template: "{% if states('sensor.low_battery') %}true{% endif %}"
+    action:
+      - service: persistent_notification.create
+        data_template:
+          title: Low Battery
+          message: "{{ states('sensor.low_battery') }}"
+          notification_id: low-battery-alert
+      - service: script.speech_engine
+        data_template:
+          notify: "ios_family"
+          title: Low Battery
+          CustomMessage: "Low battery levels: {{ states('sensor.low_battery') }}"
+
+##############################################################################
+##             BONUS Presence Detection TTS Media Player Select             ##
 ##############################################################################
 
   - alias: Notification Presence Detection
-
+    id: notification_presence_detection
     trigger:
       platform: state
       entity_id:
+######## Change this to match the ENTITY ID of your MOTION DETECTORS ######
         - binary_sensor.living_room_motion
         - binary_sensor.hallway_motion
         - binary_sensor.dining_room_motion
@@ -98,6 +198,7 @@ automation:
         entity_id: input_select.notification_media_player_alexa
         data_template:
           option: >-
+######## Change this to match the FRIENDLY NAME of your GOOGLE MEDIA PLAYERS and the ENTITY ID of your MOTION DETECTORS ######
             {% if is_state("binary_sensor.attic_motion", "on") %}
             Attic Dot
             {% elif is_state("binary_sensor.hallway_motion", "on") %}
@@ -118,16 +219,17 @@ automation:
         entity_id: input_select.notification_media_player_google
         data_template:
           option: >-
+######## Change this to match the FRIENDLY NAME of your ALEXA MEDIA PLAYERS and the ENTITY ID of your MOTION DETECTORS ######
             {% if is_state("binary_sensor.attic_motion", "on") %}
-            All Cast
+            Attic Cast
             {% elif is_state("binary_sensor.hallway_motion", "on") %}
-            All Cast
+            Hallway Cast
             {% elif is_state("binary_sensor.dining_room_motion", "on") %}
-            All Cast
+            Dining Room Cast
             {% elif is_state("binary_sensor.bathroom_motion", "on") %}
-            All Cast
+            Bathroom Cast
             {% elif is_state("binary_sensor.kitchen_motion", "on") %}
-            All Cast
+            Kitchen Cast
             {% elif is_state("binary_sensor.master_bedroom_motion", "on") %}
             Master Bedroom Cast
             {% elif is_state("binary_sensor.motion_detector_25", "on") %}
