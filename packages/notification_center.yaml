@@ -16,7 +16,7 @@ group:
       - automation.notification_shut_down
       - automation.notification_battery_alert
       - automation.notification_left_something_open
-      - automation.notification_last_message
+      - automation.notification_repeat_last_message
 
 
   notification_settings:
@@ -31,12 +31,20 @@ group:
       - input_boolean.guest_mode
       - input_boolean.notification_alert_mode
 
+sensor:
+  - platform: mqtt
+    state_topic: "tts/last_message"
+    name: "Last Message"
 
 input_boolean:
 
   notification_alert_mode:
     name: Alert Mode
     icon: mdi:bell
+
+  guest_mode:
+    name: Guest Mode
+    icon: mdi:account-alert
 
   speech_notifications:
     name: Speech Notifications
@@ -45,6 +53,11 @@ input_boolean:
   text_notifications:
     name: Text Notifications
     icon: mdi:message-text-outline
+
+  last_message:
+    name: Last Message
+    initial: off
+    icon: mdi:repeat-once
 
 input_number:
   notification_google_volume:
@@ -83,12 +96,12 @@ script:
             {%- endfor -%}
           speech_message: >-
             {%- macro dark_outside() -%}
-              {{ [
+              {% set dark_outside = [
                 "It's pretty dark outside. I will turn on the outside lights now. ",
                 "It's a little past Sunset. Time to turn on the outside lights. ",
                 "I will switch on the outside lights. It is getting dark outside. ",
                 "Time to turn on the front lights. I will take care of it. "
-              ]|random }}
+              {{ dark_outside | random }}
             {%- endmacro -%}
 
             {%- macro dark_inside() -%}
@@ -876,6 +889,9 @@ script:
       - condition: state
         entity_id: input_boolean.text_notifications
         state: 'on'
+######################################################################################################
+##                          Handles the notification for iOS.                                       ##
+######################################################################################################
       - service_template: "notify.{{ notify }}"
         data_template:
           title: "{{ title }}"
@@ -890,3 +906,12 @@ script:
               badge: "{{ ios_badge }}"
               category: "{{ ios_category }}"
             entity_id: "{{ camera_entity }}"
+######################################################################################################
+##                          Handles the notification for FireTV.                                    ##
+######################################################################################################
+      - service: notify.fire_tv
+        data_template:
+          title: "{{ title }}"
+          message: >-
+            {{ speech_message | replace("\n","") | replace("   ","") |
+               replace("eight hundred and sixty one thousand","861.000") }}
