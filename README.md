@@ -104,6 +104,7 @@ Follow this page [here](https://www.home-assistant.io/components/notify.group/) 
   data:
     call_greeting: 1
     call_welcome_home: 1
+    alexa_type: "tts"
     call_inside_weather: 1
 ```
 
@@ -116,6 +117,7 @@ Follow this page [here](https://www.home-assistant.io/components/notify.group/) 
   call_inside_weather: 1
   notify: "ios_family"
   person: "Joe"
+  alexa_type: "tts"
 ```
 
 **Service call for an iOS notification with an image attachment would look like this:**
@@ -147,6 +149,7 @@ Follow this page [here](https://www.home-assistant.io/components/notify.group/) 
     call_welcome_home: 1
     call_inside_weather: 1
     notify: "ios_family"
+    alexa_type: "tts"
   data_template:
     person: >-
       {{ trigger.event.data.name }}
