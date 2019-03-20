@@ -121,6 +121,19 @@ Follow this page [here](https://www.home-assistant.io/components/notify.group/) 
   alexa_type: "tts"
 ```
 
+**When using the alexa call if you want to send the notification through a whole group of echos synced then call like this:** (Note. More information about the Alexa Component can be found [here](https://github.com/keatontaylor/alexa_media_player/wiki/Notification-Component).)
+```
+- service: script.speech_engine
+  data:
+  call_greeting: 1
+  call_welcome_home: 1
+  call_inside_weather: 1
+  notify: "ios_family"
+  person: "Joe"
+  alexa_type: "announce"
+  alexa_method: "speak"
+```
+
 **Service call for an iOS notification with an image attachment would look like this:**
 
 ![service_call2][logo2]
