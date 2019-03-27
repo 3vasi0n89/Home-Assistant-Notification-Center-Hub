@@ -778,6 +778,30 @@ script:
             {{ alexa_type }}
           alexa_method: >
             {{ alexa_method }}
+          android_action_1: >-
+            {{ android_action_1 }}
+          android_action_title_1: >-
+            {{ android_action_title_1 }}
+          android_action_2: >-
+            {{ android_action_2 }}
+          android_action_title_2: >-
+            {{ android_action_title_2 }}
+          android_action_3: >-
+            {{ android_action_3 }}
+          android_action_title_3: >-
+            {{ android_action_title_3 }}
+          image_url: >-
+            {{ image_url }}
+          android_color: >-
+            {{ android_color }}
+          android_message_type: >-
+            {{ android_message_type }}
+          android_tag: >-
+            {{ android_tag }}
+          android_dismiss: >-
+            {{ android_dismiss }}
+          android_icon: >-
+            {{ android_icon }}
 
       - service: input_boolean.turn_off
         data:
@@ -820,7 +844,30 @@ script:
             {{ ios_category }}
           camera_entity: >-
             {{ camera_entity }}
-
+          android_action_1: >-
+            {{ android_action_1 }}
+          android_action_title_1: >-
+            {{ android_action_title_1 }}
+          android_action_2: >-
+            {{ android_action_2 }}
+          android_action_title_2: >-
+            {{ android_action_title_2 }}
+          android_action_3: >-
+            {{ android_action_3 }}
+          android_action_title_3: >-
+            {{ android_action_title_3 }}
+          image_url: >-
+            {{ image_url }}
+          android_color: >-
+            {{ android_color }}
+          android_message_type: >-
+            {{ android_message_type }}
+          android_tag: >-
+            {{ android_tag }}
+          android_dismiss: >-
+            {{ android_dismiss }}
+          android_icon: >-
+            {{ android_icon }}
 ######################################################################################################
 ##                  Within speech_processing the TTS-service is called.                             ##
 ######################################################################################################
@@ -924,3 +971,26 @@ script:
           message: >-
             {{ speech_message | replace("\n","") | replace("   ","") |
                replace("eight hundred and sixty one thousand","861.000") }}
+######################################################################################################
+##                          Handles the notification for FireTV.                                    ##
+######################################################################################################
+      - service: notify.android
+        data_template:
+          title: "{{ title }}"
+          message: >-
+            {{ speech_message | replace("\n","") | replace("   ","") |
+               replace("  "," ") }}
+          data:
+            actions:
+              - action: "{{ android_action_1 }}"
+                title: "{{ android_action_title_1 }}"
+              - action: "{{ android_action_2 }}"
+                title: "{{ android_action_title_2}}"
+              - action: "{{ android_action_3 }}"
+                title: "{{ android_action_title_3 }}"
+            image: "{{ image_url }}"
+            color: "{{ android_color }}"
+            message_type: "{{ android_message_type }}"
+            tag: "{{ android_tag }}"
+            dismiss: "{{ android_dismiss }}"
+            icon: "{{ android_icon }}"

@@ -22,6 +22,14 @@ There are a few things that still need to be tweaked in this project and I am lo
 
 **More updates to come!**
 
+## Notification Platforms Currently Supported
+
+* Apple iOS
+* Android
+* Android TV / Fire TV
+
+If you'd like for a certain platform to be added just shoot me a PM on Discord @3vasi0n and I'd be glad to add it!
+
 ## Notification Automations Currently Included
 
 * Start Up
