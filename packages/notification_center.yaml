@@ -963,7 +963,7 @@ script:
               category: "{{ ios_category }}"
             entity_id: "{{ camera_entity }}"
 ######################################################################################################
-##                          Handles the notification for FireTV.                                    ##
+##                          Handles the notification for Android TV / Fire TV.                                    ##
 ######################################################################################################
       - service: notify.fire_tv
         data_template:
@@ -972,7 +972,7 @@ script:
             {{ speech_message | replace("\n","") | replace("   ","") |
                replace("eight hundred and sixty one thousand","861.000") }}
 ######################################################################################################
-##                          Handles the notification for FireTV.                                    ##
+##                          Handles the notification for Android.                                    ##
 ######################################################################################################
       - service: notify.android
         data_template:

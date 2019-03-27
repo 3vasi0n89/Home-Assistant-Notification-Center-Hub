@@ -40,6 +40,8 @@ If you'd like for a certain platform to be added just shoot me a PM on Discord @
 * Last Message
 * Low Battery Warning
 
+These are just some included automations to help show you real life examples of how I use the calls.
+
 ## Additional Abilities
 
 * Send Notifications to multiple notify components using only 1 service call
